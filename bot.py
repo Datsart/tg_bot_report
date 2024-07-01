@@ -1,60 +1,116 @@
 import telebot
 from telebot import types
 import requests
+from settings import Settings
 
-token = '7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM'
+token = f'{Settings.tg_bot_token}'
 
 bot = telebot.TeleBot(token)
 
-# Список разрешенных пользователей
-# указываем ник без собаки!!!
-ALLOWED_USERS = ['']
+# Список разрешенных пользователей, указываем ник без собаки!!!
+ALLOWED_USERS = [f'{Settings.my_name}']
 
 
 def is_user_allowed(username):
     return username in ALLOWED_USERS
 
 
-def send_routes(chat_id):
-    # кнопки
-    # callback_data - на какой роут перекидывает при нажатии
+@bot.message_handler(commands=['command1', 'command2'])
+def create_second_menu(message):
+    if message.text == '/command1' or message.text == '/command2':
+        second_menu(message.chat.id)
+
+
+# Состояние выбранных проектов из 2го и 3го меню
+selected_projects = {
+    'project_a': False,
+    'project_b': False,
+    'project_c': False,
+    'apart_studio': False,
+    'apart_1k': False,
+    'apart_2k': False,
+    'apart_3k': False,
+}
+
+
+def get_checkbox_text(project_key, project_name):
+    return '✅ ' + project_name if selected_projects[project_key] else project_name
+
+
+def second_menu(chat_id):
     keyboard = types.InlineKeyboardMarkup()
-    key_1 = types.InlineKeyboardButton(text='Кнопка 1', callback_data='/')
+    key_1 = types.InlineKeyboardButton(text=get_checkbox_text('project_a', 'Проект А'),
+                                       callback_data='toggle_project_a')
     keyboard.add(key_1)
-    key_2 = types.InlineKeyboardButton(text='Кнопка 2', callback_data='button2')
+    key_2 = types.InlineKeyboardButton(text=get_checkbox_text('project_b', 'Проект Б'),
+                                       callback_data='toggle_project_b')
     keyboard.add(key_2)
-    key_3 = types.InlineKeyboardButton(text='Кнопка 3', callback_data='button3')
+    key_3 = types.InlineKeyboardButton(text=get_checkbox_text('project_c', 'Проект С'),
+                                       callback_data='toggle_project_c')
     keyboard.add(key_3)
-    key_4 = types.InlineKeyboardButton(text='Кнопка 4', callback_data='button4')
+    key_4 = types.InlineKeyboardButton(text='Выбрать все', callback_data='select_all_second')
     keyboard.add(key_4)
-    key_5 = types.InlineKeyboardButton(text='Кнопка 5', callback_data='button5')
+    key_5 = types.InlineKeyboardButton(text='Далее', callback_data='second_next')
     keyboard.add(key_5)
-    bot.send_message(chat_id, 'Кнопки', reply_markup=keyboard)
+    bot.send_message(chat_id, 'Меню проектов', reply_markup=keyboard)
+
+
+def third_menu(chat_id):
+    keyboard = types.InlineKeyboardMarkup()
+    key_1 = types.InlineKeyboardButton(text=get_checkbox_text('apart_studio', 'Студия'),
+                                       callback_data='toggle_apart_studio')
+    keyboard.add(key_1)
+    key_2 = types.InlineKeyboardButton(text=get_checkbox_text('apart_1k', '1к. квартира'),
+                                       callback_data='toggle_apart_1k')
+    keyboard.add(key_2)
+    key_3 = types.InlineKeyboardButton(text=get_checkbox_text('apart_2k', '2к. квартира'),
+                                       callback_data='toggle_apart_2k')
+    keyboard.add(key_3)
+    key_4 = types.InlineKeyboardButton(text=get_checkbox_text('apart_3k', '3к. квартира'),
+                                       callback_data='toggle_apart_3k')
+    keyboard.add(key_4)
+    key_5 = types.InlineKeyboardButton(text='Выбрать все', callback_data='select_all_third')
+    keyboard.add(key_5)
+    key_6 = types.InlineKeyboardButton(text='Далее', callback_data='third_next')
+    keyboard.add(key_6)
+    key_7 = types.InlineKeyboardButton(text='Назвд', callback_data='third_back')
+    keyboard.add(key_7)
+    bot.send_message(chat_id, 'Меню помещений', reply_markup=keyboard)
 
 
 @bot.message_handler(content_types=['text'])
 def services(message):
-    if is_user_allowed(message.from_user.username):
-        send_routes(message.chat.id)
-    else:
-        bot.send_message(message.chat.id, "Извините, у вас нет доступа к этому боту.")
+    if message.text == 'Меню':
+        if is_user_allowed(message.from_user.username):
+            second_menu(message.chat.id)
+        else:
+            bot.send_message(message.chat.id, "Извините, у вас нет доступа к этому боту.")
 
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
-    if call.data == '/':
-        response = requests.get('http://127.0.0.1:8000').json()  # Отправляем запрос к Flask серверу
-        bot.send_message(call.message.chat.id, response['msg'])
-        send_routes(call.message.chat.id)
-
-    elif call.data == 'button2':
-        bot.answer_callback_query(call.id, "Вы нажали кнопку 2")
-    elif call.data == 'button3':
-        bot.answer_callback_query(call.id, "Вы нажали кнопку 3")
-    elif call.data == 'button4':
-        bot.answer_callback_query(call.id, "Вы нажали кнопку 4")
-    elif call.data == 'button5':
-        bot.answer_callback_query(call.id, "Вы нажали кнопку 5")
+    if call.data.startswith('toggle_project'):
+        project_key = call.data.split('_')[-1]
+        selected_projects[f'project_{project_key}'] = not selected_projects[f'project_{project_key}']
+        second_menu(call.message.chat.id)
+    elif call.data.startswith('toggle_apart'):
+        project_key = call.data.split('_')[-1]
+        selected_projects[f'apart_{project_key}'] = not selected_projects[f'apart_{project_key}']
+        third_menu(call.message.chat.id)
+    elif call.data == 'select_all_second':
+        all_selected = all(selected_projects[key] for key in ['project_a', 'project_b', 'project_c'])
+        for key in ['project_a', 'project_b', 'project_c']:
+            selected_projects[key] = not all_selected
+        second_menu(call.message.chat.id)
+    elif call.data == 'select_all_third':
+        all_selected = all(selected_projects[key] for key in ['apart_studio', 'apart_1k', 'apart_2k', 'apart_3k'])
+        for key in ['apart_studio', 'apart_1k', 'apart_2k', 'apart_3k']:
+            selected_projects[key] = not all_selected
+        third_menu(call.message.chat.id)
+    elif call.data == 'second_next':
+        third_menu(call.message.chat.id)
+    elif call.data == 'third_back':
+        second_menu(call.message.chat.id)
 
 
 bot.polling(none_stop=True, interval=0)
