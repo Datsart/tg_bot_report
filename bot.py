@@ -73,9 +73,29 @@ def third_menu(chat_id):
     keyboard.add(key_5)
     key_6 = types.InlineKeyboardButton(text='Далее', callback_data='third_next')
     keyboard.add(key_6)
-    key_7 = types.InlineKeyboardButton(text='Назвд', callback_data='third_back')
+    key_7 = types.InlineKeyboardButton(text='Назад', callback_data='third_back')
     keyboard.add(key_7)
     bot.send_message(chat_id, 'Меню помещений', reply_markup=keyboard)
+
+
+def four_menu(chat_id):
+    keyboard = types.InlineKeyboardMarkup()
+    key_1 = types.InlineKeyboardButton(text='Общая статистика', callback_data='general_statistic')
+    keyboard.add(key_1)
+    key_2 = types.InlineKeyboardButton(text='В разделе литера', callback_data='liter_statistic')
+    keyboard.add(key_2)
+    key_3 = types.InlineKeyboardButton(text='Назад', callback_data='four_back')
+    keyboard.add(key_3)
+    bot.send_message(chat_id, 'Как ищем', reply_markup=keyboard)
+
+
+def select_period(chat_id):
+    keyboard = types.InlineKeyboardMarkup()
+    # key_1 = types.InlineKeyboardButton(text='Выбрать период', callback_data='select_period')
+    # keyboard.add(key_1)
+    key_3 = types.InlineKeyboardButton(text='Назад', callback_data='select_period_back')
+    keyboard.add(key_3)
+    bot.send_message(chat_id, 'Выбрать период', reply_markup=keyboard)
 
 
 @bot.message_handler(content_types=['text'])
@@ -111,6 +131,14 @@ def callback_query(call):
         third_menu(call.message.chat.id)
     elif call.data == 'third_back':
         second_menu(call.message.chat.id)
+    elif call.data == 'third_next':
+        four_menu(call.message.chat.id)
+    elif call.data == 'four_back':
+        third_menu(call.message.chat.id)
+    elif call.data == 'general_statistic' or call.data == 'liter_statistic':
+        select_period(call.message.chat.id)
+    elif call.data == 'select_period_back':
+        four_menu(call.message.chat.id)
 
 
 bot.polling(none_stop=True, interval=0)
