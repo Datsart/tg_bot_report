@@ -91,8 +91,6 @@ def four_menu(chat_id):
 
 def select_period(chat_id):
     keyboard = types.InlineKeyboardMarkup()
-    # key_1 = types.InlineKeyboardButton(text='Выбрать период', callback_data='select_period')
-    # keyboard.add(key_1)
     key_3 = types.InlineKeyboardButton(text='Назад', callback_data='select_period_back')
     keyboard.add(key_3)
     bot.send_message(chat_id, 'Выбрать период', reply_markup=keyboard)
