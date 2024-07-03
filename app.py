@@ -1,20 +1,18 @@
-from flask import Flask, render_template, request, abort
-import os
-app = Flask(__name__, template_folder='./static', static_folder='./static')
+from flask import Flask, render_template, send_from_directory
 
-# Хранение токенов пользователей (синхронизировано с ботом)
-user_tokens = {
-    'datsenko_artem123': 'n2uf62qD80yjJW8f53fFVw'
-}
+app = Flask(__name__, static_folder='static', template_folder='static')
 
 
-@app.route('/app', methods=['GET'])
+@app.route('/app', methods=['GET', 'POST'])
 def login():
-    # token = request.args.get('token')
-    # if not token or token not in user_tokens.values():
-    #     abort(403)  # Доступ запрещен
     return render_template('index.html')
 
 
+# Маршрут для файла app.js
+@app.route('/app.js')
+def serve_js():
+    return send_from_directory('.', 'app.js')
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8000)), debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
