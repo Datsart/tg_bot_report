@@ -1,6 +1,7 @@
 import telebot
 from telebot import types
 from settings import Settings
+import secrets
 
 token = f'{Settings.tg_bot_token}'
 
@@ -9,6 +10,9 @@ bot.remove_webhook()
 
 # Список разрешенных пользователей, указываем ник без собаки!!!
 ALLOWED_USERS = [f'{Settings.my_name}']
+
+# Хранение токенов пользователей
+user_tokens = {}
 
 
 def is_user_allowed(username):
@@ -20,6 +24,18 @@ def create_second_menu(message):
     if is_user_allowed(message.from_user.username):
         if message.text == '/command1' or message.text == '/command2':
             second_menu(message.chat.id)
+    else:
+        bot.send_message(message.chat.id, "Извините, у вас нет доступа к этому боту.")
+
+
+@bot.message_handler(commands=['start'])
+def services(message):
+    if is_user_allowed(message.from_user.username):
+        # Генерация токена для пользователя
+        token = secrets.token_urlsafe(16)
+        user_tokens[message.from_user.username] = token
+        bot.send_message(message.chat.id, f'Ваш токен для доступа к веб-странице: {token}')
+        second_menu(message.chat.id)
     else:
         bot.send_message(message.chat.id, "Извините, у вас нет доступа к этому боту.")
 
@@ -97,14 +113,6 @@ def select_period(chat_id):
     key_3 = types.InlineKeyboardButton(text='Назад', callback_data='select_period_back')
     keyboard.add(key_3)
     bot.send_message(chat_id, 'Выбрать период', reply_markup=keyboard)
-
-
-@bot.message_handler(commands=['start'])
-def services(message):
-    if is_user_allowed(message.from_user.username):
-        second_menu(message.chat.id)
-    else:
-        bot.send_message(message.chat.id, "Извините, у вас нет доступа к этому боту.")
 
 
 @bot.callback_query_handler(func=lambda call: True)
