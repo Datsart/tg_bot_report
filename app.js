@@ -9,4 +9,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
         })
     })
+
 })
+let tg = window.Telegram.WebApp
+console.log(tg)
