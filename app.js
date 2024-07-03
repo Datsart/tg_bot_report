@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     })
     let tg = window.Telegram.WebApp
     console.log(tg)
-    const {first_name, last_name, username} = window.Telegram.WebApp.initDataUnsafe.user
+    const {first_name, last_name, username} = window.Telegram.WebApp.initData.user
     console.log(first_name + last_name + username)
     document.getElementById('info').innerText = first_name + last_name + username
 })
