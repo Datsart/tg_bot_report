@@ -12,4 +12,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let tg = window.Telegram.WebApp
     // console.log(a.id + a.user)
     document.getElementById('info').innerText = tg.initDataUnsafe.user.id
+    let b = document.getElementById('list-users')
+    document.getElementById('info2').innerText = b
+
 })
