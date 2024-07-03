@@ -5,7 +5,7 @@ app = Flask(__name__, template_folder='./static', static_folder='./static')
 
 # Хранение токенов пользователей (синхронизировано с ботом)
 user_tokens = {
-    # Пример: 'username': 'token'
+    'datsenko_artem123': 'E9k1Lvj8XhZH6_u7oQpI5g'
 }
 
 
