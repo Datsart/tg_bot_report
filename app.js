@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     })
     let tg = window.Telegram.WebApp
     console.log(tg)
-    const a = window.Telegram.WebApp.initData
+    const a = window.Telegram.WebApp.initData.id
     // console.log(a.id + a.user)
-    document.getElementById('info').innerText = a.id
+    document.getElementById('info').innerText = a
 })
