@@ -1,19 +1,18 @@
 from flask import Flask, render_template, request, abort
 import os
-
 app = Flask(__name__, template_folder='./static', static_folder='./static')
 
 # Хранение токенов пользователей (синхронизировано с ботом)
 user_tokens = {
-    'datsenko_artem123': 'E9k1Lvj8XhZH6_u7oQpI5g'
+    'datsenko_artem123': 'n2uf62qD80yjJW8f53fFVw'
 }
 
 
 @app.route('/app', methods=['GET'])
 def login():
-    token = request.args.get('token')
-    if not token or token not in user_tokens.values():
-        abort(403)  # Доступ запрещен
+    # token = request.args.get('token')
+    # if not token or token not in user_tokens.values():
+    #     abort(403)  # Доступ запрещен
     return render_template('index.html')
 
 
