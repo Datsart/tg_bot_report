@@ -1,6 +1,5 @@
 import telebot
 from telebot import types
-import requests
 from settings import Settings
 
 token = f'{Settings.tg_bot_token}'
@@ -18,8 +17,11 @@ def is_user_allowed(username):
 
 @bot.message_handler(commands=['command1', 'command2'])
 def create_second_menu(message):
-    if message.text == '/command1' or message.text == '/command2':
-        second_menu(message.chat.id)
+    if is_user_allowed(message.from_user.username):
+        if message.text == '/command1' or message.text == '/command2':
+            second_menu(message.chat.id)
+    else:
+        bot.send_message(message.chat.id, "Извините, у вас нет доступа к этому боту.")
 
 
 # Состояние выбранных проектов из 2го и 3го меню
@@ -97,47 +99,49 @@ def select_period(chat_id):
     bot.send_message(chat_id, 'Выбрать период', reply_markup=keyboard)
 
 
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(commands=['start'])
 def services(message):
-    if message.text == 'Меню':
-        if is_user_allowed(message.from_user.username):
-            second_menu(message.chat.id)
-        else:
-            bot.send_message(message.chat.id, "Извините, у вас нет доступа к этому боту.")
+    if is_user_allowed(message.from_user.username):
+        second_menu(message.chat.id)
+    else:
+        bot.send_message(message.chat.id, "Извините, у вас нет доступа к этому боту.")
 
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
-    if call.data.startswith('toggle_project'):
-        project_key = call.data.split('_')[-1]
-        selected_projects[f'project_{project_key}'] = not selected_projects[f'project_{project_key}']
-        second_menu(call.message.chat.id)
-    elif call.data.startswith('toggle_apart'):
-        project_key = call.data.split('_')[-1]
-        selected_projects[f'apart_{project_key}'] = not selected_projects[f'apart_{project_key}']
-        third_menu(call.message.chat.id)
-    elif call.data == 'select_all_second':
-        all_selected = all(selected_projects[key] for key in ['project_a', 'project_b', 'project_c'])
-        for key in ['project_a', 'project_b', 'project_c']:
-            selected_projects[key] = not all_selected
-        second_menu(call.message.chat.id)
-    elif call.data == 'select_all_third':
-        all_selected = all(selected_projects[key] for key in ['apart_studio', 'apart_1k', 'apart_2k', 'apart_3k'])
-        for key in ['apart_studio', 'apart_1k', 'apart_2k', 'apart_3k']:
-            selected_projects[key] = not all_selected
-        third_menu(call.message.chat.id)
-    elif call.data == 'second_next':
-        third_menu(call.message.chat.id)
-    elif call.data == 'third_back':
-        second_menu(call.message.chat.id)
-    elif call.data == 'third_next':
-        four_menu(call.message.chat.id)
-    elif call.data == 'four_back':
-        third_menu(call.message.chat.id)
-    elif call.data == 'general_statistic' or call.data == 'liter_statistic':
-        select_period(call.message.chat.id)
-    elif call.data == 'select_period_back':
-        four_menu(call.message.chat.id)
+    if is_user_allowed(call.from_user.username):
+        if call.data.startswith('toggle_project'):
+            project_key = call.data.split('_')[-1]
+            selected_projects[f'project_{project_key}'] = not selected_projects[f'project_{project_key}']
+            second_menu(call.message.chat.id)
+        elif call.data.startswith('toggle_apart'):
+            project_key = call.data.split('_')[-1]
+            selected_projects[f'apart_{project_key}'] = not selected_projects[f'apart_{project_key}']
+            third_menu(call.message.chat.id)
+        elif call.data == 'select_all_second':
+            all_selected = all(selected_projects[key] for key in ['project_a', 'project_b', 'project_c'])
+            for key in ['project_a', 'project_b', 'project_c']:
+                selected_projects[key] = not all_selected
+            second_menu(call.message.chat.id)
+        elif call.data == 'select_all_third':
+            all_selected = all(selected_projects[key] for key in ['apart_studio', 'apart_1k', 'apart_2k', 'apart_3k'])
+            for key in ['apart_studio', 'apart_1k', 'apart_2k', 'apart_3k']:
+                selected_projects[key] = not all_selected
+            third_menu(call.message.chat.id)
+        elif call.data == 'second_next':
+            third_menu(call.message.chat.id)
+        elif call.data == 'third_back':
+            second_menu(call.message.chat.id)
+        elif call.data == 'third_next':
+            four_menu(call.message.chat.id)
+        elif call.data == 'four_back':
+            third_menu(call.message.chat.id)
+        elif call.data == 'general_statistic' or call.data == 'liter_statistic':
+            select_period(call.message.chat.id)
+        elif call.data == 'select_period_back':
+            four_menu(call.message.chat.id)
+    else:
+        bot.send_message(call.message.chat.id, "Извините, у вас нет доступа к этому боту.")
 
 
 bot.polling(none_stop=True, interval=0)
