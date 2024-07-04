@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, request
+from flask import Flask, render_template, send_from_directory, request, jsonify
 
 app = Flask(__name__, static_folder='static', template_folder='static')
 
@@ -15,7 +15,7 @@ def login():
 def take_info():
     data = request.get_json()  # ответ с фронта
     print(data)
-    return data
+    return jsonify(data)
 
 
 # Маршрут для файла app.js
