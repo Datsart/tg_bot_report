@@ -32,6 +32,7 @@ if (list_users.includes(user_name)) {
         console.log(url_for_post)
         let chat_id = tg.initDataUnsafe.user.id;
         let name = tg.initDataUnsafe.user.name;
+        console.log(name)
         let data = {
             chat_id: chat_id,
             name: name
