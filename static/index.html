@@ -6,45 +6,52 @@
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Document</title>
+    <script>
+        window.onload = function() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (userAgent.indexOf('TelegramBot') === -1) {
+                window.location.href = 'https://t.me/your_telegram_bot';
+            }
+        };
+    </script>
 </head>
 <body id="body">
-<p id="info"></p>
-<p id="info2"></p>
-<div class="container">
-    <div class="inner" id="first_menu">
-        <div class="item">
-            <button class="btn" id="btn1">Отчет для ДЦ</button>
+    <p id="info"></p>
+    <p id="info2"></p>
+    <div class="container">
+        <div class="inner" id="first_menu">
+            <div class="item">
+                <button class="btn" id="btn1">Отчет для ДЦ</button>
+            </div>
+            <div class="item">
+                <button class="btn" id="btn2">Отчет по трафику</button>
+            </div>
         </div>
-        <div class="item">
-            <button class="btn" id="btn2">Отчет по трафику</button>
+        <div class="inner" id="second_menu">
+            <div class="item">
+                <button class="btn" id="btn3">Проект А</button>
+            </div>
+            <div class="item">
+                <button class="btn" id="btn4">Проект Б</button>
+            </div>
+            <div class="item">
+                <button class="btn" id="btn5">Проект С</button>
+            </div>
+            <div class="item">
+                <button class="btn" id="btn6">Выбрать все</button>
+            </div>
+            <div class="item">
+                <button class="btn" id="btn7">Далее</button>
+            </div>
+            <div class="item">
+                <button class="btn" id="btn8">Назад</button>
+            </div>
         </div>
     </div>
-    <div class="inner" id="second_menu">
-        <div class="item">
-            <button class="btn" id="btn3">Проект А</button>
-        </div>
-        <div class="item">
-            <button class="btn" id="btn4">Проект Б</button>
-        </div>
-        <div class="item">
-            <button class="btn" id="btn5">Проект С</button>
-        </div>
-        <div class="item">
-            <button class="btn" id="btn6">Выбрать все</button>
-        </div>
-        <div class="item">
-            <button class="btn" id="btn7">Далее</button>
-        </div>
-        <div class="item">
-            <button class="btn" id="btn8">Назад</button>
-        </div>
-    </div>
-</div>
 
-<script id="url-for-post" data-url-for-post="{{ url_for_post }}"></script>
-<script id="list-users" data-list-users="{{ list_users }}"></script>
+    <script id="url-for-post" data-url-for-post="{{ url_for_post }}"></script>
+    <script id="list-users" data-list-users="{{ list_users }}"></script>
 
-<script src="../app.js?w=4131123"></script>
-
+    <script src="../app.js?w=413131123"></script>
 </body>
 </html>
