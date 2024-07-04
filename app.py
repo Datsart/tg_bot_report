@@ -5,10 +5,11 @@ import telebot
 app = Flask(__name__, static_folder='static', template_folder='static')
 
 
-def send_errors(chat_id, name):
+def send_errors(chat_id):
     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
     # доделать приветсвие
-    bot.send_message(chat_id, f'Здравствуйте {name}')
+    bot.send_message(chat_id, f'Здравствуйте {chat_id}')
+    # bot.send_message(chat_id, f'Здравствуйте {name}')
 
 
 @app.route('/app', methods=['GET', 'POST'])
