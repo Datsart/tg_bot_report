@@ -2,8 +2,8 @@
 // const user_name = tg.initDataUnsafe.user.displayName
 
 
-let list_users_element = document.getElementById('list-users');
-let list_users = list_users_element.getAttribute('data-list-users');
+// let list_users_element = document.getElementById('list-users');
+// let list_users = list_users_element.getAttribute('data-list-users');
 document.addEventListener('DOMContentLoaded', function (event) {
 
     document.getElementById('second_menu').style.display = 'none'
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     })
     // получаем id пользователя - это и есть chat_id
     const tg = window.Telegram.WebApp
-    let a = tg.initDataUnsafe.user.displayName
+    let a = tg.initDataUnsafe.user.id
     document.getElementById('info').innerText = a
 
     // document.getElementById('info2').innerText = tg.initDataUnsafe.user.name
