@@ -9,7 +9,20 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
         })
     })
+    // получаем id пользователя - это и есть chat_id
     let tg = window.Telegram.WebApp
     document.getElementById('info').innerText = tg.initDataUnsafe.user.id
-    // получаем id пользователя
+
+    // отправка данных в бэк
+    let url_for_post_element = document.getElementById('url-for-post');
+    let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
+    let data = tg.initDataUnsafe.user.id
+    fetch(url_for_post, {
+        "method": "POST",
+        "headers": {"Content-Type": "application/json"},
+        "body": JSON.stringify(data),
+    })
+        .then(response => {
+            return response.json();
+        });
 })

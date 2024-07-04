@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, request
 
 app = Flask(__name__, static_folder='static', template_folder='static')
 
@@ -6,7 +6,16 @@ app = Flask(__name__, static_folder='static', template_folder='static')
 @app.route('/app', methods=['GET', 'POST'])
 def login():
     list_users = ['datsenko_artem123', 'RayVik']
-    return render_template('index.html', list_users=list_users)
+    url_for_post = request.url_root + 'post_response'
+
+    return render_template('index.html', list_users=list_users, url_for_post=url_for_post)
+
+
+@app.route('/post_response', methods=['GET', 'POST'])
+def take_info():
+    data = request.get_json()  # ответ с фронта
+    print(data)
+    return data
 
 
 # Маршрут для файла app.js
