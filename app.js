@@ -1,9 +1,7 @@
 const tg = window.Telegram.WebApp
 let user_name = ''
 console.log(tg.initDataUnsafe.user.username)
-let name = tg.initDataUnsafe.user.name;
-
-console.log(name)
+console.log(tg.initData.username)
 
 // try {
 //     user_name = tg.initDataUnsafe.user.username
