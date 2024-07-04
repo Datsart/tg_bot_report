@@ -1,12 +1,11 @@
-const tg = window.Telegram.WebApp
-const user_name = tg.initDataUnsafe.user.displayName
+// const tg = window.Telegram.WebApp
+// const user_name = tg.initDataUnsafe.user.displayName
 
 
 let list_users_element = document.getElementById('list-users');
 let list_users = list_users_element.getAttribute('data-list-users');
 document.addEventListener('DOMContentLoaded', function (event) {
-    document.getElementById('info').innerText = tg.initDataUnsafe.user.displayName
-    document.getElementById('info2').innerText = tg.initDataUnsafe.user.name
+
     document.getElementById('second_menu').style.display = 'none'
     let buttons_first_menu = document.querySelectorAll('#first_menu .btn')
     buttons_first_menu.forEach(function (button) {
@@ -20,8 +19,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
         document.getElementById('first_menu').style.display = 'block'
     })
     // получаем id пользователя - это и есть chat_id
-    // const user_name = tg.initDataUnsafe.user.displayName
-
+    const tg = window.Telegram.WebApp
+    document.getElementById('info').innerText = tg.initDataUnsafe.user.displayName
+    document.getElementById('info2').innerText = tg.initDataUnsafe.user.name
     document.getElementById('info').innerText = tg.initDataUnsafe.user.displayName
 
     // отправка данных в бэк
