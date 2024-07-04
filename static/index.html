@@ -44,22 +44,7 @@
 <script id="list-users" data-full-url="{{ list_users }}"></script>
 <script id="url-for-post" data-url-for-post="{{ url_for_post }}"></script>
 
-<script>
-        // Функция для генерации случайного числа
-        function getRandomNumber(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
+<script src="../app.js?w=123"></script>
 
-        // Генерация случайного числа для параметра w
-        let randomW = getRandomNumber(1, 100); // Например, число от 1 до 100
-
-        // Создание тега <script> с динамическим параметром w
-        let script = document.createElement('script');
-        script.src = `../app.js?w=${randomW}`;
-        document.head.appendChild(script);
-
-        // Вывод случайного числа на страницу (для проверки)
-        document.getElementById('content').innerText = `Random w: ${randomW}`;
-    </script>
 </body>
 </html>
