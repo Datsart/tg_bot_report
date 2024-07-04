@@ -20,15 +20,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
     console.log(url_for_post)
     let data = tg.initDataUnsafe.user.id
-    document.querySelector('body').addEventListener('click', function () {
-        fetch(url_for_post, {
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "body": JSON.stringify(data),
-        })
-            .then(response => {
-                return response.json();
-            });
+    fetch(url_for_post, {
+        "method": "POST",
+        "headers": {"Content-Type": "application/json"},
+        "body": JSON.stringify(data),
     })
+        .then(response => {
+            return response.json();
+        });
+
 
 })
