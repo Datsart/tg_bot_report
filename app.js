@@ -31,7 +31,7 @@ if (list_users.includes(user_name)) {
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
         console.log(url_for_post)
         let chat_id = tg.initDataUnsafe.user.id;
-        let name = tg.initDataUnsafe.user.name;
+        let name = tg.initDataUnsafe.user.user;
         console.log(name)
         let data = {
             chat_id: chat_id,
