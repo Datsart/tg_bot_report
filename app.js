@@ -26,18 +26,16 @@ if (list_users.includes(user_name)) {
             document.getElementById('second_menu').style.display = 'none'
             document.getElementById('first_menu').style.display = 'block'
         })
-        // получаем id пользователя - это и есть chat_id
-        // const tg = window.Telegram.WebApp
-        // let a = tg.initDataUnsafe.user.username
-        // document.getElementById('info').innerText = a
-
-        // document.getElementById('info2').innerText = tg.initDataUnsafe.user.name
-        // console.log(a)
         // отправка данных в бэк
         let url_for_post_element = document.getElementById('url-for-post');
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
         console.log(url_for_post)
-        let data = tg.initDataUnsafe.user.id
+        let chat_id = tg.initDataUnsafe.user.id;
+        let name = tg.initDataUnsafe.user.name;
+        let data = {
+            chat_id: chat_id,
+            name: name
+        };
         fetch(url_for_post, {
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
