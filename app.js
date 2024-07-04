@@ -1,5 +1,11 @@
 const tg = window.Telegram.WebApp
-const user_name = tg.initDataUnsafe.user.username
+let user_name = ''
+
+try {
+    user_name = tg.initDataUnsafe.user.username
+} catch (e) {
+    console.log(e)
+}
 
 
 let list_users_element = document.getElementById('list-users');
@@ -44,7 +50,7 @@ if (list_users.includes(user_name)) {
 
     })
 
-} else  {
+} else {
     document.getElementById('body').innerHTML = ''
 }
 
