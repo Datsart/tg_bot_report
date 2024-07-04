@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
         button.addEventListener('click', function () {
             document.getElementById('second_menu').style.display = 'block'
             document.getElementById('first_menu').style.display = 'none'
-
-
         })
     })
     document.getElementById('btn8').addEventListener('click', function () {
