@@ -5,7 +5,7 @@ app = Flask(__name__, static_folder='static', template_folder='static')
 
 @app.route('/app', methods=['GET', 'POST'])
 def login():
-    list_users = ['datsenko_artem123', 'ilya2raev']
+    list_users = ['datsenko_artem123', 'RayVik']
     return render_template('index.html', list_users=list_users)
 
 
