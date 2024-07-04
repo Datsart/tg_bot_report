@@ -1,7 +1,7 @@
 const tg = window.Telegram.WebApp
 let user_name = ''
 console.log(tg.initDataUnsafe.user.username)
-console.log(tg.initData.username)
+console.log(tg.initDataUnsafe.user.first_name)
 
 // try {
 //     user_name = tg.initDataUnsafe.user.username
@@ -31,7 +31,7 @@ if (list_users.includes(user_name)) {
         // отправка данных в бэк
         let url_for_post_element = document.getElementById('url-for-post');
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
-        console.log(url_for_post)
+        // console.log(url_for_post)
         let data = tg.initDataUnsafe.user.id;
         // let name = tg.initDataUnsafe.user.user;
         // console.log(name)
