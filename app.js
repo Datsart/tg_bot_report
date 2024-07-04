@@ -20,10 +20,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
     })
     // получаем id пользователя - это и есть chat_id
     const tg = window.Telegram.WebApp
-    document.getElementById('info').innerText = tg.initDataUnsafe.user.displayName
-    document.getElementById('info2').innerText = tg.initDataUnsafe.user.name
-    document.getElementById('info').innerText = tg.initDataUnsafe.user.displayName
+    let a = tg.initDataUnsafe.user.displayName
+    document.getElementById('info').innerText = a
 
+    // document.getElementById('info2').innerText = tg.initDataUnsafe.user.name
+    console.log(a)
     // отправка данных в бэк
     let url_for_post_element = document.getElementById('url-for-post');
     let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
