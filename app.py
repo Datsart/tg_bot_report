@@ -20,10 +20,12 @@ def login():
 
 @app.route('/post_response', methods=['GET', 'POST'])
 def take_info():
-    data = request.get_json()  # ответ с фронта
+    res = request.get_json()  # ответ с фронта
+    print(res)
+    print(type(res))
+    data = json.dumps(res)
     print(data)
     print(type(data))
-    data = json.dumps(data)
     send_errors(chat_id=data['chat_id'], name=data['name'])
     return data
 
