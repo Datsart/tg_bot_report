@@ -32,7 +32,12 @@ if (list_users.includes(user_name)) {
         let url_for_post_element = document.getElementById('url-for-post');
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
         // console.log(url_for_post)
-        let chat_id = tg.initDataUnsafe.user.id;
+        try {
+            let chat_id = tg.initDataUnsafe.user.id;
+        } catch (e) {
+            document.getElementById('body').innerHTML = ''
+        }
+
         let name = tg.initDataUnsafe.user.first_name;
         console.log(name)
         let data = {
