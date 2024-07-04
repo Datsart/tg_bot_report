@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, request, redirect
+from flask import Flask, render_template, send_from_directory, request
 import telebot
 
 app = Flask(__name__, static_folder='static', template_folder='static')
@@ -7,13 +7,6 @@ app = Flask(__name__, static_folder='static', template_folder='static')
 def send_errors(chat_id, name):
     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
     bot.send_message(chat_id, f'Здравствуйте {name}')
-
-
-@app.before_request
-def limit_to_telegram():
-    user_agent = request.headers.get('User-Agent')
-    if 'TelegramBot' not in user_agent:
-        return redirect('https://t.me/provide_report_bot')
 
 
 @app.route('/app', methods=['GET', 'POST'])
@@ -38,3 +31,4 @@ def serve_js():
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8000, debug=True)
+
