@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
         })
     })
+    document.getElementById('btn8').addEventListener('click', function () {
+        document.getElementById('second_menu').style.display = 'none'
+        document.getElementById('first_menu').style.display = 'block'
+    })
     // получаем id пользователя - это и есть chat_id
     let tg = window.Telegram.WebApp
     document.getElementById('info').innerText = tg.initDataUnsafe.user.id
@@ -20,13 +24,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let data = tg.initDataUnsafe.user.id
     document.querySelector('body').addEventListener('click', function () {
         fetch(url_for_post, {
-        "method": "POST",
-        "headers": {"Content-Type": "application/json"},
-        "body": JSON.stringify(data),
-    })
-        .then(response => {
-            return response.json();
-        });
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "body": JSON.stringify(data),
+        })
+            .then(response => {
+                return response.json();
+            });
     })
 
 })

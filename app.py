@@ -15,7 +15,7 @@ def login():
 def take_info():
     data = request.get_json()  # ответ с фронта
     print(data)
-    return jsonify(data)
+    return data
 
 
 # Маршрут для файла app.js
