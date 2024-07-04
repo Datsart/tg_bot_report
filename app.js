@@ -3,11 +3,11 @@ let user_name = ''
 // console.log(tg.initDataUnsafe.user.username)
 // console.log(tg.initDataUnsafe.user.first_name)
 
-// try {
-//     user_name = tg.initDataUnsafe.user.username
-// } catch (e) {
-//     // console.log(e)
-// }
+try {
+    user_name = tg.initDataUnsafe.user.username
+} catch (e) {
+    // console.log(e)
+}
 
 
 let list_users_element = document.getElementById('list-users');
