@@ -6,7 +6,6 @@ let list_users_element = document.getElementById('list-users');
 let list_users = list_users_element.getAttribute('data-list-users');
 
 if (list_users.includes(user_name)) {
-    console.log(11111111)
     document.addEventListener('DOMContentLoaded', function (event) {
 
         document.getElementById('second_menu').style.display = 'none'
@@ -45,6 +44,8 @@ if (list_users.includes(user_name)) {
 
     })
 
+} else  {
+    document.getElementById('body').innerHTML = ''
 }
 
 
