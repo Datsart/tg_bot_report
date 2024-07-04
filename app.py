@@ -26,7 +26,7 @@ def take_info():
     data = json.dumps(res)
     print(data)
     print(type(data))
-    send_errors(chat_id=str(data['chat_id']), name=str(data['name']))
+    send_errors(chat_id=int(data['chat_id']), name=str(data['name']))
     return data
 
 
