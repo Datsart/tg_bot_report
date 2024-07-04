@@ -22,7 +22,7 @@ def login():
 def take_info():
     data = request.get_json()  # ответ с фронта
     print(data)
-    send_errors(chat_id=data['chat_id'], name=data['name'])
+    # send_errors(chat_id=data['chat_id'], name=data['name'])
     return json.loads(data)
 
 
