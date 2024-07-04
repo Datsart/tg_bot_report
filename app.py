@@ -5,10 +5,10 @@ import telebot
 app = Flask(__name__, static_folder='static', template_folder='static')
 
 
-def send_errors(chat_id):
+def send_errors(chat_id, name):
     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
     # доделать приветсвие
-    bot.send_message(chat_id, f'Здравствуйте {chat_id}')
+    bot.send_message(chat_id, f'Здравствуйте {name}')
     # bot.send_message(chat_id, f'Здравствуйте {name}')
 
 
@@ -23,7 +23,7 @@ def login():
 def take_info():
     data = request.get_json()  # ответ с фронта
 
-    send_errors(chat_id=data)
+    send_errors(chat_id=int(data['chat_id']), name=str(data['name']))
     return data
 
 

@@ -1,7 +1,7 @@
 const tg = window.Telegram.WebApp
 let user_name = ''
-console.log(tg.initDataUnsafe.user.username)
-console.log(tg.initDataUnsafe.user.first_name)
+// console.log(tg.initDataUnsafe.user.username)
+// console.log(tg.initDataUnsafe.user.first_name)
 
 // try {
 //     user_name = tg.initDataUnsafe.user.username
@@ -32,13 +32,13 @@ if (list_users.includes(user_name)) {
         let url_for_post_element = document.getElementById('url-for-post');
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
         // console.log(url_for_post)
-        let data = tg.initDataUnsafe.user.id;
-        // let name = tg.initDataUnsafe.user.user;
-        // console.log(name)
-        // let data = {
-        //     chat_id: chat_id,
-        //     name: name
-        // };
+        let chat_id = tg.initDataUnsafe.user.id;
+        let name = tg.initDataUnsafe.user.first_name;
+        console.log(name)
+        let data = {
+            chat_id: chat_id,
+            name: name
+        };
         fetch(url_for_post, {
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
