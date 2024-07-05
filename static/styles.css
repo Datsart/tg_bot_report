@@ -64,6 +64,6 @@ body {
     gap: 10px;
 }
 .switch .btn {
-    /*width: calc(200px/2 - 10px/2);*/
+    width: calc(390px/2 - 10px/2);
     font-size: 10px;
 }
