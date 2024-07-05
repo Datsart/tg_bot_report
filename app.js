@@ -1,7 +1,5 @@
 const tg = window.Telegram.WebApp
 let user_name = ''
-// console.log(tg.initDataUnsafe.user.username)
-// console.log(tg.initDataUnsafe.user.first_name)
 
 try {
     user_name = tg.initDataUnsafe.user.username
@@ -24,14 +22,13 @@ if (list_users.includes(user_name)) {
                 document.getElementById('first_menu').style.display = 'none'
             })
         })
-        document.getElementById('btn8').addEventListener('click', function () {
+        document.querySelector('.btn-back').addEventListener('click', function () {
             document.getElementById('second_menu').style.display = 'none'
             document.getElementById('first_menu').style.display = 'block'
         })
         // отправка данных в бэк
         let url_for_post_element = document.getElementById('url-for-post');
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
-        // console.log(url_for_post)
         try {
             let chat_id = tg.initDataUnsafe.user.id;
         } catch (e) {

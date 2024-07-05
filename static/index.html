@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Document</title>
 </head>
@@ -32,11 +32,13 @@
         <div class="item">
             <button class="btn" id="btn6">Выбрать все</button>
         </div>
-        <div class="item">
-            <button class="btn" id="btn7">Далее</button>
-        </div>
-        <div class="item">
-            <button class="btn" id="btn8">Назад</button>
+        <div class="switch">
+<!--            <div class="item">-->
+                <button class="btn btn-back" id="btn8"><< Назад</button>
+<!--            </div>-->
+<!--            <div class="item">-->
+                <button class="btn btn-next" id="btn7">Далее >></button>
+<!--            </div>-->
         </div>
     </div>
 </div>
@@ -44,7 +46,7 @@
 <script id="url-for-post" data-url-for-post="{{ url_for_post }}"></script>
 <script id="list-users" data-list-users="{{ list_users }}"></script>
 
-<script src="../app.js?w=41311241113323"></script>
+<script src="../app.js?w=413112411113323"></script>
 
 </body>
 </html>
