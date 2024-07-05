@@ -21,13 +21,14 @@ body {
 .container {
     /*max-width: 390px;*/
     /*margin-left: 1px;*/
+    text-align: center;
 }
 
 
 
 .item {
-    margin-left: 50px;
-    /*text-align: center;*/
+    /*margin-left: 50px;*/
+    text-align: center;
 }
 
 .btn{
@@ -65,7 +66,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: 50px;
+    /*margin-left: 50px;*/
 }
 .switch .btn {
     width: calc(200px/2 - 10px/2);
