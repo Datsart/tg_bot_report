@@ -30,8 +30,9 @@ if (list_users.includes(user_name)) {
         // отправка данных в бэк
         let url_for_post_element = document.getElementById('url-for-post');
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
+        let chat_id;
         try {
-            let chat_id = tg.initDataUnsafe.user.id;
+            chat_id = tg.initDataUnsafe.user.id;
             console.log(chat_id)
         } catch (e) {
             document.getElementById('body').innerHTML = ''
