@@ -11,7 +11,7 @@ def send_errors(chat_id, name):
 
 @app.route('/app', methods=['GET', 'POST'])
 def login():
-    list_users = ['datsenko_artem123', 'sergeyskiba']
+    list_users = ['datsenko_artem123']
     url_for_post = '/post_response'
     return render_template('index.html', list_users=list_users, url_for_post=url_for_post)
 
