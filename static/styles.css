@@ -1,4 +1,7 @@
-
+html {
+    height: 400px;
+    width: 600px;
+}
 body {
     background-image: url('media/1.jpg');
     background-repeat: no-repeat;
