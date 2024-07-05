@@ -15,9 +15,6 @@ body {
 }
 
 .container {
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*align-items: center;*/
     max-width: 390px;
 }
 
@@ -64,6 +61,6 @@ body {
     gap: 10px;
 }
 .switch .btn {
-    width: calc(390px/4 - 10px/2);
+    width: 10px;
     font-size: 10px;
 }
