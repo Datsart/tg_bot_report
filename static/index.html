@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css?w=1">
+    <link rel="stylesheet" href="/static/styles.css?w=11">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Document</title>
 </head>
@@ -13,32 +13,32 @@
 <div class="container">
     <div class="inner" id="first_menu">
         <div class="item">
-            <button class="btn" id="btn1">Отчет для ДЦ</button>
+            <button class="btn" id="dts">Отчет для ДЦ</button>
         </div>
         <div class="item">
-            <button class="btn" id="btn2">Отчет по трафику</button>
+            <button class="btn" id="grafic">Отчет по трафику</button>
         </div>
     </div>
     <div class="inner" id="second_menu">
         <div class="item">
-            <button class="btn" id="btn3">Проект А</button>
+            <button class="btn" id="project_a">Проект А</button>
         </div>
         <div class="item">
-            <button class="btn" id="btn4">Проект Б</button>
+            <button class="btn" id="project_b">Проект Б</button>
         </div>
         <div class="item">
-            <button class="btn" id="btn5">Проект С</button>
+            <button class="btn" id="project_c">Проект С</button>
         </div>
         <div class="item">
-            <button class="btn" id="btn6">Выбрать все</button>
+            <button class="btn select_all_off" id="select_all">Выбрать все</button>
         </div>
         <div class="switch">
-<!--            <div class="item">-->
-                <button class="btn btn-back" id="btn8"><< Назад</button>
-<!--            </div>-->
-<!--            <div class="item">-->
-                <button class="btn btn-next" id="btn7">Далее >></button>
-<!--            </div>-->
+            <!--            <div class="item">-->
+            <button class="btn btn-back" id="back"><< Назад</button>
+            <!--            </div>-->
+            <!--            <div class="item">-->
+            <button class="btn btn-next" id="next">Далее >></button>
+            <!--            </div>-->
         </div>
     </div>
 </div>
@@ -46,7 +46,7 @@
 <script id="url-for-post" data-url-for-post="{{ url_for_post }}"></script>
 <script id="list-users" data-list-users="{{ list_users }}"></script>
 
-<script src="../app.js?w=547197349717134"></script>
+<script src="../app.js?w=5471973497173134"></script>
 
 </body>
 </html>
