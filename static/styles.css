@@ -3,7 +3,7 @@ html {
     width: 400px;
 }
 body {
-    background-image: url('media/1.jpg');
+    background-image: url('media/2.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -41,18 +41,18 @@ body {
 .btn-next {
     background-color: rgba(88, 170, 27, 0.95);
 }
-.switch .btn-next:hover {
-    background-color: rgba(55, 108, 255, 0.95);
-}
+/*.switch .btn-next:hover {*/
+/*    background-color: rgba(55, 108, 255, 0.95);*/
+/*}*/
 .btn-back {
     background-color: rgba(198, 182, 86, 0.95);
 }
-.switch .btn-back:hover {
-    background-color: rgba(55, 108, 255, 0.95);
-}
-.btn:hover {
-    background: #21369c;
-}
+/*.switch .btn-back:hover {*/
+/*    background-color: rgba(55, 108, 255, 0.95);*/
+/*}*/
+/*.btn:hover {*/
+/*    background: #21369c;*/
+/*}*/
 
 .switch {
     text-align: center;

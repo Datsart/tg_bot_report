@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css?w=1111">
+    <link rel="stylesheet" href="/static/styles.css?w=11111">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Document</title>
 </head>
@@ -30,19 +30,63 @@
             <button class="btn" id="project_c">Проект С</button>
         </div>
         <div class="item">
-            <button class="btn select_all_off" id="select_all">Выбрать все</button>
+            <button class="btn select_all_off" id="select_all_second">Выбрать все</button>
         </div>
         <div class="switch">
-            <button class="btn btn-back" id="back"><< Назад</button>
-            <button class="btn btn-next" id="next">Далее >></button>
+            <button class="btn btn-back" id="back_second"><< Назад</button>
+            <button class="btn btn-next" id="next_second">Далее >></button>
         </div>
     </div>
+    <div class="inner" id="third_menu">
+        <div class="item">
+            <button class="btn" id="studio">Студия</button>
+        </div>
+        <div class="item">
+            <button class="btn" id="1k_apart">1к. квартира</button>
+        </div>
+        <div class="item">
+            <button class="btn" id="2k_apart">2к. квартира</button>
+        </div>
+        <div class="item">
+            <button class="btn" id="3k_apart">3к. квартира</button>
+        </div>
+        <div class="item">
+            <button class="btn select_all_off" id="select_all_third">Выбрать все</button>
+        </div>
+        <div class="switch">
+            <button class="btn btn-back" id="back_third"><< Назад</button>
+            <button class="btn btn-next" id="next_third">Далее >></button>
+        </div>
+    </div>
+    <div class="inner" id="four_menu">
+        <div class="item">
+            <button class="btn" id="all_statisctic">Общая статистика</button>
+        </div>
+        <div class="item">
+            <button class="btn" id="liter_statistic">В разделе литера</button>
+        </div>
+        <div class="switch">
+            <button class="btn btn-back" id="back_four" style="width: 200px"><< Назад</button>
+        </div>
+    </div>
+    <div class="inner" id="five_menu">
+        <div class="item">
+            <button class="btn" id="select_period">Выбрать период</button>
+        </div>
+        <div class="switch">
+            <button class="btn btn-back" id="back_five"><< Назад</button>
+            <button class="btn btn-next" id="next_five">Далее >></button>
+        </div>
+    </div>
+
+
+
 </div>
 
 <script id="url-for-post" data-url-for-post="{{ url_for_post }}"></script>
 <script id="list-users" data-list-users="{{ list_users }}"></script>
 
-<script src="../app.js?w=547197343917173134"></script>
+<script src="../app.js?w=5471973439171173134"></script>
 
 </body>
 </html>
