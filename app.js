@@ -44,41 +44,54 @@ if (list_users.includes(user_name)) {
         // обрабатываем кнопки 2го меню
         const buttons_second_menu = document.querySelectorAll('#second_menu .btn');
         let counter = 0;
-        const projects_arr = []
+        let projects_arr = []
         buttons_second_menu.forEach(function (button) {
             if (counter < 3) {
 
                 button.addEventListener('click', function () {
+                    button.style.backgroundColor = '#65bd53'
                     if (!projects_arr.includes(button.id)) {
                         projects_arr.push(button.id);
                     } else {
+                        button.style.backgroundColor = '#FF008AFF'
                         let index = projects_arr.indexOf(button.id);
                         if (index !== -1) {
                             projects_arr.splice(index, 1);
                         }
                     }
-
                     all_data['projects'] = projects_arr
                     console.log(all_data)
                 })
                 counter++;
             }
-
         });
         // обрабатываем нажать на ВЫБРАТЬ ВСЕ во 2ом меню
         document.getElementById('select_all_second').addEventListener('click', function () {
             let counter = 0;
-            buttons_second_menu.forEach(function (button) {
-                if (counter < 3) {
-                    if (!projects_arr.includes(button.id)) {
-                        button.click()
+            if (projects_arr.length === 3) {
+                projects_arr = []
+                let counter = 0
+                buttons_second_menu.forEach(function (button) {
+                    if (counter < 3) {
+                        button.style.backgroundColor = '#FF008AFF'
                     }
-                }
-                counter++
+                    counter++
+                })
+            } else {
+                buttons_second_menu.forEach(function (button) {
+                    if (counter < 3) {
+                        if (!projects_arr.includes(button.id)) {
+                            button.click()
+                        }
+                    }
+                    counter++
+                })
+            }
 
-            })
+
             all_data['projects'] = projects_arr
             console.log(all_data)
+
         })
 
 
@@ -146,38 +159,6 @@ if (list_users.includes(user_name)) {
             document.getElementById('five_menu').style.display = 'none'
         })
 
-        // чекбокс проектов 2ой меню
-        const btn_projects_array = [];
-        btn_projects_array.push(document.getElementById('project_a'));
-        btn_projects_array.push(document.getElementById('project_b'));
-        btn_projects_array.push(document.getElementById('project_c'));
-
-        const selectAllButton = document.getElementById('select_all_second');
-
-        // Функция для переключения класса "selected"
-        const toggleSelection = (button) => {
-            button.classList.toggle('selected');
-        };
-
-        // Добавляем обработчик события для каждой кнопки проекта
-        btn_projects_array.forEach(button => {
-            button.addEventListener('click', () => {
-                toggleSelection(button);
-            });
-        });
-
-        // Добавляем обработчик события для кнопки "Выбрать все"
-        selectAllButton.addEventListener('click', () => {
-            const allSelected = btn_projects_array.every(button => button.classList.contains('selected'));
-
-            btn_projects_array.forEach(button => {
-                if (allSelected) {
-                    button.classList.remove('selected');
-                } else {
-                    button.classList.add('selected');
-                }
-            });
-        });
         // чекбокс для 3ей меню
         const btn_aparts_array = [];
         btn_aparts_array.push(document.getElementById('studio'));
