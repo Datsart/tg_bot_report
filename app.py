@@ -37,7 +37,6 @@ def take_info():
 @app.route('/test', methods=['GET', 'POST'])
 def func():
     data = request.get_json()
-    # get_data(chat_id=int(data['chat_id']), data=data)
     url = "http://83.239.206.206:5556/test"
 
     payload = json.dumps({
@@ -54,8 +53,8 @@ def func():
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
-
-    print(response.json())
+    get_data(chat_id=int(data['chat_id']), data=response.json())
+    # print(response.json())
     return data
 
 

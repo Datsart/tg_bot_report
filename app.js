@@ -213,16 +213,19 @@ if (list_users.includes(user_name)) {
             all_data['end_date'] = document.getElementById('end_date').value
             let url_for_post_test_api_element = document.getElementById('url-for-post-test-api');
             let url_for_post_test_api = url_for_post_test_api_element.getAttribute('data-url-for-post-test-api');
-            // let chat_id = tg.initDataUnsafe.user.id;
+            let chat_id = tg.initDataUnsafe.user.id;
 
             let headers = {
                 'Content-Type': 'application/json'
             };
-
+            let payload = {
+                'data': all_data,
+                'chat_id': chat_id
+            }
             fetch(url_for_post_test_api, {
                 method: "POST",
                 headers: headers,
-                body: JSON.stringify(all_data)
+                body: JSON.stringify(payload)
             })
                 .then(response => response.json())
                 .then(data => {
