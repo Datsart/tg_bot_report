@@ -16,6 +16,8 @@ let list_users = list_users_element.getAttribute('data-list-users');
 // если юзер в списке из бэка то пускаем дальше
 if (list_users.includes(user_name)) {
     document.addEventListener('DOMContentLoaded', function (event) {
+        // для хранения всех данных с фронта
+        const all_data = {}
         // скрыты все менюхи кроме первой
         document.getElementById('second_menu').style.display = 'none'
         document.getElementById('third_menu').style.display = 'none'
@@ -31,8 +33,55 @@ if (list_users.includes(user_name)) {
                 document.getElementById('third_menu').style.display = 'none'
                 document.getElementById('four_menu').style.display = 'none'
                 document.getElementById('five_menu').style.display = 'none'
+                // что нажали то и добавилось
+                if (button.id === 'dts') {
+                    all_data['report'] = 'dts'
+                } else {
+                    all_data['report'] = 'grafic'
+                }
             })
         })
+        // обрабатываем кнопки 2го меню
+        const buttons_second_menu = document.querySelectorAll('#second_menu .btn');
+        let counter = 0;
+        const projects_arr = []
+        buttons_second_menu.forEach(function (button) {
+            if (counter < 3) {
+
+                button.addEventListener('click', function () {
+                    if (!projects_arr.includes(button.id)) {
+                        projects_arr.push(button.id);
+                    } else {
+                        let index = projects_arr.indexOf(button.id);
+                        if (index !== -1) {
+                            projects_arr.splice(index, 1);
+                        }
+                    }
+
+                    all_data['projects'] = projects_arr
+                    console.log(all_data)
+                })
+                counter++;
+            }
+
+        });
+        // обрабатываем нажать на ВЫБРАТЬ ВСЕ во 2ом меню
+        document.getElementById('select_all_second').addEventListener('click', function () {
+            let counter = 0;
+            buttons_second_menu.forEach(function (button) {
+                if (counter < 3) {
+                    if (!projects_arr.includes(button.id)) {
+                        button.click()
+                    }
+                }
+                counter++
+
+            })
+            all_data['projects'] = projects_arr
+            console.log(all_data)
+        })
+
+
         // при нажатии любой из кнопок 4ой меню идем в 5ую меню
         const buttons_four_menu_array = []
         buttons_four_menu_array.push(document.getElementById('all_statisctic'))
