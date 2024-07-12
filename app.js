@@ -87,13 +87,57 @@ if (list_users.includes(user_name)) {
                     counter++
                 })
             }
-
-
             all_data['projects'] = projects_arr
             console.log(all_data)
-
         })
-
+        // обрабатываем кнопки 3го меню
+        const buttons_third_menu = document.querySelectorAll('#third_menu .btn');
+        let counter_2 = 0;
+        let aparts_arr = []
+        buttons_third_menu.forEach(function (button) {
+            if (counter_2 < 4) {
+                button.addEventListener('click', function () {
+                    button.style.backgroundColor = '#65bd53'
+                    if (!aparts_arr.includes(button.id)) {
+                        aparts_arr.push(button.id);
+                    } else {
+                        button.style.backgroundColor = '#FF008AFF'
+                        let index = aparts_arr.indexOf(button.id);
+                        if (index !== -1) {
+                            aparts_arr.splice(index, 1);
+                        }
+                    }
+                    all_data['aparts'] = aparts_arr
+                    console.log(all_data)
+                })
+                counter_2++;
+            }
+        });
+        // обрабатываем нажать на ВЫБРАТЬ ВСЕ в 3ем меню
+        document.getElementById('select_all_third').addEventListener('click', function () {
+            let counter_2 = 0;
+            if (aparts_arr.length === 4) {
+                aparts_arr = []
+                let counter_2 = 0
+                buttons_third_menu.forEach(function (button) {
+                    if (counter_2 < 4) {
+                        button.style.backgroundColor = '#FF008AFF'
+                    }
+                    counter_2++
+                })
+            } else {
+                buttons_third_menu.forEach(function (button) {
+                    if (counter_2 < 4) {
+                        if (!aparts_arr.includes(button.id)) {
+                            button.click()
+                        }
+                    }
+                    counter_2++
+                })
+            }
+            all_data['aparts'] = aparts_arr
+            console.log(all_data)
+        })
 
         // при нажатии любой из кнопок 4ой меню идем в 5ую меню
         const buttons_four_menu_array = []
@@ -158,36 +202,6 @@ if (list_users.includes(user_name)) {
             document.getElementById('four_menu').style.display = 'block'
             document.getElementById('five_menu').style.display = 'none'
         })
-
-        // чекбокс для 3ей меню
-        const btn_aparts_array = [];
-        btn_aparts_array.push(document.getElementById('studio'));
-        btn_aparts_array.push(document.getElementById('1k_apart'));
-        btn_aparts_array.push(document.getElementById('2k_apart'));
-        btn_aparts_array.push(document.getElementById('3k_apart'));
-        const selectAllButton_third = document.getElementById('select_all_third');
-
-        // Функция для переключения класса "selected"
-
-        // Добавляем обработчик события для каждой кнопки проекта
-        btn_aparts_array.forEach(button => {
-            button.addEventListener('click', () => {
-                toggleSelection(button);
-            });
-        });
-
-        // Добавляем обработчик события для кнопки "Выбрать все"
-        selectAllButton_third.addEventListener('click', () => {
-            const allSelected = btn_aparts_array.every(button => button.classList.contains('selected'));
-
-            btn_aparts_array.forEach(button => {
-                if (allSelected) {
-                    button.classList.remove('selected');
-                } else {
-                    button.classList.add('selected');
-                }
-            });
-        });
 
 
         // отправка данных в бэк
