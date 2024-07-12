@@ -34,7 +34,7 @@ def take_info():
 
 
 @app.route('/test', methods=['GET', 'POST'])
-def take_info():
+def func():
     data = request.get_json()
     get_data(chat_id=int(data['chat_id']), data=data)
     return data
