@@ -214,13 +214,6 @@ if (list_users.includes(user_name)) {
             console.log(all_data)
             let url_for_post_test_api_element = document.getElementById('url-for-post-test-api');
             let url_for_post_test_api = url_for_post_test_api_element.getAttribute('data-url-for-post-test-api');
-            let chat_id;
-            try {
-                chat_id = tg.initDataUnsafe.user.id;
-                console.log(chat_id)
-            } catch (e) {
-                document.getElementById('body').innerHTML = ''
-            }
             let payload = {
                 'chat_id': chat_id,
                 "global_filters": {
