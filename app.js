@@ -7,7 +7,7 @@ try {
     user_name = tg.initDataUnsafe.user.username
     console.log(user_name)
 } catch (e) {
-    // console.log(e)
+    console.log(e)
 }
 
 // списки юзеров
