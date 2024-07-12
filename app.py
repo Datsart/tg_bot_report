@@ -20,8 +20,8 @@ def get_data(chat_id, data):
 def login():
     list_users = ['datsenko_artem123', 'RayVik', 'sergeyskiba']
     url_for_post = '/post_response'
-    # url_for_post_test_api = 'http://83.239.206.206:5556/test'
-    url_for_post_test_api = '/test'
+    url_for_post_test_api = 'http://83.239.206.206:5556/test'
+    # url_for_post_test_api = '/test'
     return render_template('index.html', list_users=list_users, url_for_post=url_for_post,
                            url_for_post_test_api=url_for_post_test_api)
 
