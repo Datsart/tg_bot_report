@@ -1,7 +1,8 @@
 from flask import Flask, render_template, send_from_directory, request
 import telebot
 from flask_cors import CORS
-
+import json
+import requests
 app = Flask(__name__, static_folder='static', template_folder='static')
 CORS(app)
 
@@ -20,8 +21,8 @@ def get_data(chat_id, data):
 def login():
     list_users = ['datsenko_artem123', 'RayVik', 'sergeyskiba']
     url_for_post = '/post_response'
-    url_for_post_test_api = 'http://83.239.206.206:5556/test'
-    # url_for_post_test_api = '/test'
+    # url_for_post_test_api = 'http://83.239.206.206:5556/test'
+    url_for_post_test_api = '/test'
     return render_template('index.html', list_users=list_users, url_for_post=url_for_post,
                            url_for_post_test_api=url_for_post_test_api)
 
@@ -36,7 +37,25 @@ def take_info():
 @app.route('/test', methods=['GET', 'POST'])
 def func():
     data = request.get_json()
-    get_data(chat_id=int(data['chat_id']), data=data)
+    # get_data(chat_id=int(data['chat_id']), data=data)
+    url = "http://83.239.206.206:5556/test"
+
+    payload = json.dumps({
+        "global_filters": {
+            "build__id": []
+        },
+        "liter__id": [],
+        "period_start": "2024-06-01",
+        "period_end": "2024-06-30",
+        'data': data
+    })
+    headers = {
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.json())
     return data
 
 
