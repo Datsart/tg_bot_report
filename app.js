@@ -3,12 +3,12 @@ let user_name = ''
 
 // проверка на валидность юзера
 
-// try {
-//     user_name = tg.initDataUnsafe.user.username
-//     console.log(user_name)
-// } catch (e) {
-//     // console.log(e)
-// }
+try {
+    user_name = tg.initDataUnsafe.user.username
+    console.log(user_name)
+} catch (e) {
+    // console.log(e)
+}
 
 // списки юзеров
 let list_users_element = document.getElementById('list-users');
@@ -60,7 +60,7 @@ if (list_users.includes(user_name)) {
                         }
                     }
                     all_data['projects'] = projects_arr
-                    console.log(all_data)
+                    // console.log(all_data)
                 })
                 counter++;
             }
@@ -88,7 +88,7 @@ if (list_users.includes(user_name)) {
                 })
             }
             all_data['projects'] = projects_arr
-            console.log(all_data)
+            // console.log(all_data)
         })
         // обрабатываем кнопки 3го меню
         const buttons_third_menu = document.querySelectorAll('#third_menu .btn');
@@ -108,7 +108,7 @@ if (list_users.includes(user_name)) {
                         }
                     }
                     all_data['aparts'] = aparts_arr
-                    console.log(all_data)
+                    // console.log(all_data)
                 })
                 counter_2++;
             }
@@ -136,7 +136,7 @@ if (list_users.includes(user_name)) {
                 })
             }
             all_data['aparts'] = aparts_arr
-            console.log(all_data)
+            // console.log(all_data)
         })
 
         // при нажатии любой из кнопок 4ой меню идем в 5ую меню
@@ -211,21 +211,33 @@ if (list_users.includes(user_name)) {
         document.getElementById('send_report').addEventListener('click', function () {
             all_data['start_date'] = document.getElementById('start_date').value
             all_data['end_date'] = document.getElementById('end_date').value
-
+            console.log(all_data)
+            let url_for_post_test_api_element = document.getElementById('url-for-post-test-api');
+            let url_for_post_test_api = url_for_post_test_api_element.getAttribute('data-url-for-post-test-api');
+            fetch(url_for_post_test_api, {
+                "method": "POST",
+                "headers": {"Content-Type": "application/json"},
+                "body": JSON.stringify(all_data),
+            })
+                .then(response => {
+                    return response.json();
+                });
         })
+
+
         // отправка данных в бэк для отрисовки/запуска
         let url_for_post_element = document.getElementById('url-for-post');
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
         let chat_id;
-        // try {
-        //     chat_id = tg.initDataUnsafe.user.id;
-        //     console.log(chat_id)
-        // } catch (e) {
-        //     document.getElementById('body').innerHTML = ''
-        // }
+        try {
+            chat_id = tg.initDataUnsafe.user.id;
+            console.log(chat_id)
+        } catch (e) {
+            document.getElementById('body').innerHTML = ''
+        }
         // отдаем имя юзера и чат айди
         let name = tg.initDataUnsafe.user.first_name;
-        console.log(name)
+        // console.log(name)
         let data = {
             chat_id: chat_id,
             name: name
