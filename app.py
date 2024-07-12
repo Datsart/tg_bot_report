@@ -26,13 +26,13 @@ def take_info():
     return data
 
 
-@app.route('/test', methods=['GET', 'POST'])
-def take_info():
-    data = request.get_json()  # ответ с фронта
-    bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
-    chat_id = int(data['chat_id'])
-    bot.send_message(chat_id, data)
-    return data
+# @app.route('/test', methods=['GET', 'POST'])
+# def take_info():
+#     data = request.get_json()  # ответ с фронта
+#     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
+#     chat_id = int(data['chat_id'])
+#     bot.send_message(chat_id, data)
+#     return data
 
 
 # Маршрут для файла app.js
