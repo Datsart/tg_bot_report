@@ -150,6 +150,11 @@ if (list_users.includes(user_name)) {
                 document.getElementById('third_menu').style.display = 'none'
                 document.getElementById('four_menu').style.display = 'none'
                 document.getElementById('five_menu').style.display = 'block'
+                if (button.id === 'all_statisctic') {
+                    all_data['statistic'] = 'all_statisctic'
+                } else {
+                    all_data['statistic'] = 'liter_statistic'
+                }
             })
         })
 
@@ -202,9 +207,13 @@ if (list_users.includes(user_name)) {
             document.getElementById('four_menu').style.display = 'block'
             document.getElementById('five_menu').style.display = 'none'
         })
+        // нажали на отправить отчет в 5ой меню и отправили словарь с данными в бэк
+        document.getElementById('send_report').addEventListener('click', function () {
+            all_data['start_date'] = document.getElementById('start_date').value
+            all_data['end_date'] = document.getElementById('end_date').value
 
-
-        // отправка данных в бэк
+        })
+        // отправка данных в бэк для отрисовки/запуска
         let url_for_post_element = document.getElementById('url-for-post');
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
         let chat_id;
