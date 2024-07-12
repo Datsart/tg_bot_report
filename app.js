@@ -3,12 +3,12 @@ let user_name = ''
 
 // проверка на валидность юзера
 
-try {
-    user_name = tg.initDataUnsafe.user.username
-    console.log(user_name)
-} catch (e) {
-    // console.log(e)
-}
+// try {
+//     user_name = tg.initDataUnsafe.user.username
+//     console.log(user_name)
+// } catch (e) {
+//     // console.log(e)
+// }
 
 // списки юзеров
 let list_users_element = document.getElementById('list-users');
@@ -214,14 +214,38 @@ if (list_users.includes(user_name)) {
             console.log(all_data)
             let url_for_post_test_api_element = document.getElementById('url-for-post-test-api');
             let url_for_post_test_api = url_for_post_test_api_element.getAttribute('data-url-for-post-test-api');
+            let chat_id;
+            try {
+                chat_id = tg.initDataUnsafe.user.id;
+                console.log(chat_id)
+            } catch (e) {
+                document.getElementById('body').innerHTML = ''
+            }
+            let payload = {
+                'chat_id': chat_id,
+                "global_filters": {
+                    "build__id": []
+                },
+                "liter__id": [],
+                "period_start": "2024-06-01",
+                "period_end": "2024-06-30",
+                'data': all_data // Включаем объект all_data под ключом 'data'
+            };
+
             fetch(url_for_post_test_api, {
-                "method": "POST",
-                "headers": {"Content-Type": "application/json"},
-                "body": JSON.stringify(all_data),
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(payload)
             })
-                .then(response => {
-                    return response.json();
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                 });
+
+
         })
 
 
@@ -229,12 +253,12 @@ if (list_users.includes(user_name)) {
         let url_for_post_element = document.getElementById('url-for-post');
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
         let chat_id;
-        try {
-            chat_id = tg.initDataUnsafe.user.id;
-            console.log(chat_id)
-        } catch (e) {
-            document.getElementById('body').innerHTML = ''
-        }
+        // try {
+        //     chat_id = tg.initDataUnsafe.user.id;
+        //     console.log(chat_id)
+        // } catch (e) {
+        //     document.getElementById('body').innerHTML = ''
+        // }
         // отдаем имя юзера и чат айди
         let name = tg.initDataUnsafe.user.first_name;
         // console.log(name)

@@ -13,7 +13,8 @@ def send_errors(chat_id, name):
 def login():
     list_users = ['datsenko_artem123', 'RayVik', 'sergeyskiba']
     url_for_post = '/post_response'
-    url_for_post_test_api = 'http://83.239.206.206:5556/test'
+    # url_for_post_test_api = 'http://83.239.206.206:5556/test'
+    url_for_post_test_api = '/test'
     return render_template('index.html', list_users=list_users, url_for_post=url_for_post,
                            url_for_post_test_api=url_for_post_test_api)
 
@@ -25,6 +26,13 @@ def take_info():
     return data
 
 
+@app.route('/test', methods=['GET', 'POST'])
+def take_info():
+    data = request.get_json()  # ответ с фронта
+    bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
+    chat_id = int(data['chat_id'])
+    bot.send_message(chat_id, data)
+    return data
 
 
 # Маршрут для файла app.js
