@@ -1,7 +1,9 @@
 from flask import Flask, render_template, send_from_directory, request
 import telebot
+from flask_cors import CORS
 
 app = Flask(__name__, static_folder='static', template_folder='static')
+CORS(app)
 
 
 def send_errors(chat_id, name):
@@ -11,7 +13,7 @@ def send_errors(chat_id, name):
 
 def get_data(chat_id, data):
     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
-    bot.send_message(chat_id, f'Здравствуйте {data}')
+    bot.send_message(chat_id, data)
 
 
 @app.route('/app', methods=['GET', 'POST'])
@@ -31,11 +33,11 @@ def take_info():
     return data
 
 
-# @app.route('/test', methods=['GET', 'POST'])
-# def take_info():
-#     data = request.get_json()
-#     get_data(chat_id=int(data['chat_id']), data=data)
-#     return data
+@app.route('/test', methods=['GET', 'POST'])
+def take_info():
+    data = request.get_json()
+    get_data(chat_id=int(data['chat_id']), data=data)
+    return data
 
 
 # Маршрут для файла app.js

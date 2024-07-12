@@ -211,36 +211,37 @@ if (list_users.includes(user_name)) {
         document.getElementById('send_report').addEventListener('click', function () {
             all_data['start_date'] = document.getElementById('start_date').value
             all_data['end_date'] = document.getElementById('end_date').value
-            // let url_for_post_test_api_element = document.getElementById('url-for-post-test-api');
-            // let url_for_post_test_api = url_for_post_test_api_element.getAttribute('data-url-for-post-test-api');
-            // let chat_id = tg.initDataUnsafe.user.id;
-            // let payload = JSON.stringify({
-            //     'chat_id': chat_id,
-            //     "global_filters": {
-            //         "build__id": []
-            //     },
-            //     "liter__id": [],
-            //     "period_start": "2024-01-01",
-            //     "period_end": "2024-06-30"
-            // });
-            //
-            // let headers = {
-            //     'Content-Type': 'application/json'
-            // };
-            //
-            // fetch(url_for_post_test_api, {
-            //     method: "POST",
-            //     headers: headers,
-            //     body: payload
-            // })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         console.log(data);
-            //     })
-            //     .catch(error => {
-            //         console.error('Error:', error);
-            //     });
-            console.log(all_data)
+            let url_for_post_test_api_element = document.getElementById('url-for-post-test-api');
+            let url_for_post_test_api = url_for_post_test_api_element.getAttribute('data-url-for-post-test-api');
+            let chat_id = tg.initDataUnsafe.user.id;
+            let payload = JSON.stringify({
+                'chat_id': chat_id,
+                "global_filters": {
+                    "build__id": []
+                },
+                "liter__id": [],
+                "period_start": "2024-01-01",
+                "period_end": "2024-06-30",
+                'data': all_data
+            });
+
+            let headers = {
+                'Content-Type': 'application/json'
+            };
+
+            fetch(url_for_post_test_api, {
+                method: "POST",
+                headers: headers,
+                body: payload
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            // console.log(all_data)
         })
 
 
