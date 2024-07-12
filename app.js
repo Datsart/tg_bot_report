@@ -213,7 +213,10 @@ if (list_users.includes(user_name)) {
             all_data['end_date'] = document.getElementById('end_date').value
             let url_for_post_test_api_element = document.getElementById('url-for-post-test-api');
             let url_for_post_test_api = url_for_post_test_api_element.getAttribute('data-url-for-post-test-api');
+            let chat_id = tg.initDataUnsafe.user.id;
+
             let payload = {
+                'chat_id': chat_id,
                 "global_filters": {
                     "build__id": []
                 },
@@ -228,12 +231,8 @@ if (list_users.includes(user_name)) {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(payload)
             })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
+                .then(response => {
+                    return response.json();
                 });
 
 
