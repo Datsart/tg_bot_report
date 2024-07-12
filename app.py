@@ -13,7 +13,7 @@ def send_errors(chat_id, name):
 
 def get_data(chat_id, data):
     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
-    bot.send_message(chat_id, data)
+    bot.send_message(chat_id, f'{data}')
 
 
 @app.route('/app', methods=['GET', 'POST'])
