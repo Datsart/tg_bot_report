@@ -214,27 +214,32 @@ if (list_users.includes(user_name)) {
             let url_for_post_test_api_element = document.getElementById('url-for-post-test-api');
             let url_for_post_test_api = url_for_post_test_api_element.getAttribute('data-url-for-post-test-api');
             let chat_id = tg.initDataUnsafe.user.id;
-
-            let payload = {
+            let payload = JSON.stringify({
                 'chat_id': chat_id,
                 "global_filters": {
                     "build__id": []
                 },
                 "liter__id": [],
-                "period_start": "2024-06-01",
-                "period_end": "2024-06-30",
-                'data': all_data // Включаем объект all_data под ключом 'data'
+                "period_start": "2024-01-01",
+                "period_end": "2024-06-30"
+            });
+
+            let headers = {
+                'Content-Type': 'application/json'
             };
 
             fetch(url_for_post_test_api, {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(payload)
+                headers: headers,
+                body: payload
             })
-                .then(response => {
-                    return response.json();
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                 });
-
 
         })
 
