@@ -31,11 +31,11 @@ def take_info():
     return data
 
 
-@app.route('/test', methods=['GET', 'POST'])
-def take_info():
-    data = request.get_json()
-    get_data(chat_id=int(data['chat_id']), data=data)
-    return data
+# @app.route('/test', methods=['GET', 'POST'])
+# def take_info():
+#     data = request.get_json()
+#     get_data(chat_id=int(data['chat_id']), data=data)
+#     return data
 
 
 # Маршрут для файла app.js
