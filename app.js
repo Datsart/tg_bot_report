@@ -3,12 +3,12 @@ let user_name = ''
 
 // проверка на валидность юзера
 
-// try {
-//     user_name = tg.initDataUnsafe.user.username
-//     console.log(user_name)
-// } catch (e) {
-//     // console.log(e)
-// }
+try {
+    user_name = tg.initDataUnsafe.user.username
+    console.log(user_name)
+} catch (e) {
+    // console.log(e)
+}
 
 // списки юзеров
 let list_users_element = document.getElementById('list-users');
@@ -253,12 +253,12 @@ if (list_users.includes(user_name)) {
         let url_for_post_element = document.getElementById('url-for-post');
         let url_for_post = url_for_post_element.getAttribute('data-url-for-post');
         let chat_id;
-        // try {
-        //     chat_id = tg.initDataUnsafe.user.id;
-        //     console.log(chat_id)
-        // } catch (e) {
-        //     document.getElementById('body').innerHTML = ''
-        // }
+        try {
+            chat_id = tg.initDataUnsafe.user.id;
+            console.log(chat_id)
+        } catch (e) {
+            document.getElementById('body').innerHTML = ''
+        }
         // отдаем имя юзера и чат айди
         let name = tg.initDataUnsafe.user.first_name;
         // console.log(name)
