@@ -9,6 +9,11 @@ def send_errors(chat_id, name):
     bot.send_message(chat_id, f'Здравствуйте {name}')
 
 
+def get_data(chat_id, data):
+    bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
+    bot.send_message(chat_id, f'Здравствуйте {data}')
+
+
 @app.route('/app', methods=['GET', 'POST'])
 def login():
     list_users = ['datsenko_artem123', 'RayVik', 'sergeyskiba']
@@ -26,13 +31,11 @@ def take_info():
     return data
 
 
-# @app.route('/test', methods=['GET', 'POST'])
-# def take_info():
-#     data = request.get_json()  # ответ с фронта
-#     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
-#     chat_id = int(data['chat_id'])
-#     bot.send_message(chat_id, data)
-#     return data
+@app.route('/test', methods=['GET', 'POST'])
+def take_info():
+    data = request.get_json()
+    get_data(chat_id=int(data['chat_id']), data=data)
+    return data
 
 
 # Маршрут для файла app.js
