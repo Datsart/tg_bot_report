@@ -231,10 +231,6 @@ if (list_users.includes(user_name)) {
                 .then(data => {
                     console.log(data);
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            // console.log(all_data)
         })
 
 
