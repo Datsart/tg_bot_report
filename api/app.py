@@ -4,7 +4,7 @@ from flask_cors import CORS
 import json
 import requests
 
-app = Flask(__name__, static_folder='template', template_folder='template')
+app = Flask(__name__, static_folder='templates', template_folder='templates')
 CORS(app)
 
 
