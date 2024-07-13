@@ -36,7 +36,7 @@ def send_data(chat_id, data):
 
     response = requests.request("POST", url, headers=headers, data=payload)
     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
-    bot.send_message(chat_id, f'{response.json()}')
+    bot.send_message(chat_id, f'Response: {json.dumps(response, indent=2)}')
 
 
 @app.route('/app', methods=['GET', 'POST'])
@@ -58,7 +58,7 @@ def take_info():
 @app.route('/test', methods=['GET', 'POST'])
 def func():
     data = request.get_json()
-    send_data(chat_id=int(data['chat_id']), data=json.loads(data))
+    send_data(chat_id=int(data['chat_id']), data=data['data'])
     return data
 
 
