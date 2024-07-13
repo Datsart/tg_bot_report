@@ -83,7 +83,7 @@ def func():
 # Маршрут для файла app.js
 @app.route('/app.js')
 def serve_js():
-    return send_from_directory('.', 'app.js')
+    return send_from_directory('..', 'app.js')
 
 
 if __name__ == '__main__':
