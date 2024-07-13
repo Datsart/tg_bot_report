@@ -58,7 +58,8 @@ def take_info():
 @app.route('/test', methods=['POST'])
 def func():
     data = request.get_json()
-    send_data(chat_id=int(data['chat_id']), data=data['data'])
+    data = json.loads(data)
+    send_data(chat_id=int(data['chat_id']), data=data)
     return jsonify({"status": "success"})
 
 
