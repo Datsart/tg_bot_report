@@ -218,19 +218,30 @@ if (list_users.includes(user_name)) {
             let headers = {
                 'Content-Type': 'application/json'
             };
+
             let payload = {
                 'data': all_data,
                 'chat_id': chat_id
-            }
+            };
+
             fetch(url_for_post_test_api, {
                 method: "POST",
                 headers: headers,
                 body: JSON.stringify(payload)
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     console.log(data);
                 })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+
         })
 
 

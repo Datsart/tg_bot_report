@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, request
+from flask import Flask, render_template, send_from_directory, request, jsonify
 import telebot
 from flask_cors import CORS
 import json
@@ -55,11 +55,14 @@ def take_info():
     return data
 
 
-@app.route('/test', methods=['GET', 'POST'])
+@app.route('/test', methods=['POST'])
 def func():
     data = request.get_json()
-    send_data(chat_id=int(data['chat_id']), data=data['data'])
-    return data
+    if 'chat_id' in data and 'data' in data:
+        send_data(chat_id=int(data['chat_id']), data=data['data'])
+        return jsonify({"status": "success"})
+    else:
+        return jsonify({"status": "failed", "reason": "Invalid data format"}), 400
 
 
 # Маршрут для файла app.js
