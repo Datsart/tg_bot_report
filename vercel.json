@@ -6,15 +6,4 @@
       "use": "@vercel/python"
     }
   ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "x-vercel-idle-timeout",
-          "value": "60"
-        }
-      ]
-    }
-  ]
 }
