@@ -3,6 +3,7 @@ import telebot
 from flask_cors import CORS
 import json
 import requests
+
 app = Flask(__name__, static_folder='static', template_folder='static')
 CORS(app)
 
@@ -15,6 +16,27 @@ def send_errors(chat_id, name):
 def get_data(chat_id, data):
     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
     bot.send_message(chat_id, f'{data}')
+
+
+def send_data(chat_id, data):
+    url = "http://83.239.206.206:5556/test"
+
+    payload = json.dumps({
+        "global_filters": {
+            "build__id": []
+        },
+        "liter__id": [],
+        "period_start": "2024-06-01",
+        "period_end": "2024-06-30",
+        'data': data,
+    })
+    headers = {
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+    bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
+    bot.send_message(chat_id, f'{response}')
 
 
 @app.route('/app', methods=['GET', 'POST'])
@@ -36,24 +58,7 @@ def take_info():
 @app.route('/test', methods=['GET', 'POST'])
 def func():
     data = request.get_json()
-    # url = "http://83.239.206.206:5556/test"
-    #
-    # payload = json.dumps({
-    #     "global_filters": {
-    #         "build__id": []
-    #     },
-    #     "liter__id": [],
-    #     "period_start": "2024-06-01",
-    #     "period_end": "2024-06-30",
-    #     'data': data
-    # })
-    # headers = {
-    #     'Content-Type': 'application/json'
-    # }
-    #
-    # response = requests.request("POST", url, headers=headers, data=payload)
-    get_data(chat_id=int(data['chat_id']), data=data)
-    # print(response.json())
+    send_data(chat_id=str(data['chat_id']), data=str(data))
     return data
 
 
