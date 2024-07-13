@@ -6,12 +6,10 @@
       "use": "@vercel/python"
     }
   ],
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "x-vercel-idle-timeout", "value": "60" }
-      ]
+      "src": "/(.*)",
+      "dest": "app.py"
     }
   ]
 }
