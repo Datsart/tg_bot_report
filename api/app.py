@@ -4,7 +4,7 @@ from flask_cors import CORS
 import json
 import requests
 
-app = Flask(__name__, static_folder='templates', template_folder='templates')
+app = Flask(__name__, static_folder='../templates', template_folder='../templates')
 CORS(app)
 
 
@@ -83,7 +83,7 @@ def func():
 # Маршрут для файла app.js
 @app.route('/app.js')
 def serve_js():
-    return send_from_directory('.', 'app.js')
+    return send_from_directory('..', 'app.js')
 
 
 if __name__ == '__main__':
