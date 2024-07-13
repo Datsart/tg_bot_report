@@ -36,7 +36,7 @@ def send_data(chat_id, data):
 
     response = requests.request("POST", url, headers=headers, data=payload)
     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
-    bot.send_message(chat_id, f'{response}')
+    bot.send_message(chat_id, f'{response.json()}')
 
 
 @app.route('/app', methods=['GET', 'POST'])
