@@ -74,11 +74,11 @@ def func():
         'Content-Type': 'application/json'
     }
 
-    response = requests.post(url, headers=headers, data=payload)
+    response = requests.post(url, headers=headers, data=payload, timeout=60)
 
     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
     bot.send_message(int(data['chat_id']), f'{response.json()}')
-    return jsonify({"status": "success"})
+    return data
 
 
 # Маршрут для файла app.js
