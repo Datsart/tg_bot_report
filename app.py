@@ -28,7 +28,7 @@ def send_data(chat_id, data):
         "liter__id": [],
         "period_start": "2024-06-01",
         "period_end": "2024-06-30",
-        'data': data,
+        "data": data,
     })
     headers = {
         'Content-Type': 'application/json'
@@ -36,13 +36,8 @@ def send_data(chat_id, data):
 
     response = requests.post(url, headers=headers, data=payload)
 
-    if response.status_code == 200:
-        response_data = response.json()
-    else:
-        response_data = {"error": f"Request failed with status code {response.status_code}"}
-
     bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
-    bot.send_message(chat_id, f'Response: {json.dumps(response_data, indent=2)}')
+    bot.send_message(chat_id, f'{response.json()}')
 
 
 @app.route('/app', methods=['GET', 'POST'])
@@ -64,7 +59,25 @@ def take_info():
 @app.route('/test', methods=['POST'])
 def func():
     data = request.get_json()
-    get_data(chat_id=int(data['chat_id']), data=data)
+    url = "http://83.239.206.206:5556/test"
+
+    payload = json.dumps({
+        "global_filters": {
+            "build__id": []
+        },
+        "liter__id": [],
+        "period_start": "2024-06-01",
+        "period_end": "2024-06-30",
+        "data": data,
+    })
+    headers = {
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.post(url, headers=headers, data=payload)
+
+    bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
+    bot.send_message(int(data['chat_id']), f'{response.json()}')
     return jsonify({"status": "success"})
 
 
