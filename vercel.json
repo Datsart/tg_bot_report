@@ -6,13 +6,9 @@
       "use": "@vercel/python"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "app.py"
-    }
-  ],
   "headers": [
     { "source": "/(.*)", "headers": [{ "key": "x-vercel-idle-timeout", "value": "60s" }] }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": true
 }
