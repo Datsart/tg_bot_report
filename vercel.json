@@ -7,8 +7,11 @@
     }
   ],
   "headers": [
-    { "source": "/(.*)", "headers": [{ "key": "x-vercel-idle-timeout", "value": "60s" }] }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": true
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "x-vercel-idle-timeout", "value": "60" }
+      ]
+    }
+  ]
 }
