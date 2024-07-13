@@ -58,11 +58,8 @@ def take_info():
 @app.route('/test', methods=['POST'])
 def func():
     data = request.get_json()
-    if 'chat_id' in data and 'data' in data:
-        send_data(chat_id=int(data['chat_id']), data=data['data'])
-        return jsonify({"status": "success"})
-    else:
-        return jsonify({"status": "failed", "reason": "Invalid data format"}), 400
+    send_data(chat_id=int(data['chat_id']), data=data['data'])
+    return jsonify({"status": "success"})
 
 
 # Маршрут для файла app.js
