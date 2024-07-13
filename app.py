@@ -41,7 +41,7 @@ def send_data(chat_id, data):
     else:
         response_data = {"error": f"Request failed with status code {response.status_code}"}
 
-    bot = telebot.TeleBot('YOUR_TELEGRAM_BOT_TOKEN')
+    bot = telebot.TeleBot('7288692579:AAHwZkS2aYriBJnnHNchC9gPx7S9gNQRllM')
     bot.send_message(chat_id, f'Response: {json.dumps(response_data, indent=2)}')
 
 
@@ -64,11 +64,8 @@ def take_info():
 @app.route('/test', methods=['POST'])
 def func():
     data = request.get_json()
-    if 'chat_id' in data and 'data' in data:
-        send_data(chat_id=int(data['chat_id']), data=data['data'])
-        return jsonify({"status": "success"})
-    else:
-        return jsonify({"status": "failed", "reason": "Invalid data format"}), 400
+    send_data(chat_id=int(data['chat_id']), data=data['data'])
+    return jsonify({"status": "success"})
 
 
 # Маршрут для файла app.js
