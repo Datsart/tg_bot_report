@@ -52,6 +52,7 @@ def login():
 @app.route('/post_response', methods=['GET', 'POST'])
 def take_info():
     data = request.get_json()  # ответ с фронта
+    get_data(chat_id=int(data['chat_id']), data='Ожидайте')
     send_errors(chat_id=int(data['chat_id']), name=str(data['name']))
     return data
 
