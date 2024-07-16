@@ -277,7 +277,7 @@ if (list_users.includes(user_name)) {
 // если юзера нет в списке то белая страница
 } else {
     document.getElementById('body').innerHTML = ''
-    tg.hide()
+    document.getElementById('body').style.backgroundImage = ''
 }
 
 
