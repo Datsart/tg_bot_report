@@ -28,6 +28,7 @@ if (list_users.includes(user_name)) {
         let buttons_first_menu = document.querySelectorAll('#first_menu .btn')
         buttons_first_menu.forEach(function (button) {
             button.addEventListener('click', function () {
+                tg.close()
                 document.getElementById('second_menu').style.display = 'block'
                 document.getElementById('first_menu').style.display = 'none'
                 document.getElementById('third_menu').style.display = 'none'
@@ -240,7 +241,7 @@ if (list_users.includes(user_name)) {
                 .catch(error => {
                     console.error('There has been a problem with your fetch operation:', error);
                 });
-            window.Telegram.WebApp.close()
+            tg.close()
         })
 
 
