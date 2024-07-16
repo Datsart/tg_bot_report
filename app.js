@@ -241,7 +241,7 @@ if (list_users.includes(user_name)) {
                     console.error('There has been a problem with your fetch operation:', error);
                 });
             // закрываем окно веба после отправки данных
-            Telegram.WebApp.close()
+            tg.close()
 
         })
 
