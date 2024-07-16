@@ -8,8 +8,7 @@ token = f'{Settings.tg_bot_token}'
 bot = telebot.TeleBot(token)
 bot.remove_webhook()
 
-# Список разрешенных пользователей, указываем ник без собаки!!!
-ALLOWED_USERS = [f'{Settings.my_name}']
+ALLOWED_USERS = [f'{Settings.list_users}']
 
 # Хранение токенов пользователей
 user_tokens = {}
