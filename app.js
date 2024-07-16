@@ -223,7 +223,6 @@ if (list_users.includes(user_name)) {
                 'data': all_data,
                 'chat_id': chat_id
             };
-
             fetch(url_for_post_test_api, {
                 method: "POST",
                 headers: headers,
@@ -241,6 +240,8 @@ if (list_users.includes(user_name)) {
                 .catch(error => {
                     console.error('There has been a problem with your fetch operation:', error);
                 });
+            // закрываем окно веба после отправки данных
+            Telegram.WebApp.close()
 
         })
 
