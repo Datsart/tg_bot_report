@@ -1,7 +1,7 @@
 const tg = window.Telegram.WebApp
 let user_name = ''
 
-// проверка на валидность юзера
+// проверка на валидность юзера , проверяем его ник с веба со списком юзеров
 
 try {
     user_name = tg.initDataUnsafe.user.username
@@ -33,7 +33,7 @@ if (list_users.includes(user_name)) {
                 document.getElementById('third_menu').style.display = 'none'
                 document.getElementById('four_menu').style.display = 'none'
                 document.getElementById('five_menu').style.display = 'none'
-                // что нажали то и добавилось
+                // что нажали то и добавилось в данные
                 if (button.id === 'dts') {
                     all_data['report'] = 'dts'
                 } else {
@@ -45,9 +45,9 @@ if (list_users.includes(user_name)) {
         const buttons_second_menu = document.querySelectorAll('#second_menu .btn');
         let counter = 0;
         let projects_arr = []
+        // берем первых 3 кнопки - которые могут переключаться и смена цвета при нажатии
         buttons_second_menu.forEach(function (button) {
             if (counter < 3) {
-
                 button.addEventListener('click', function () {
                     button.style.backgroundColor = '#65bd53'
                     if (!projects_arr.includes(button.id)) {
@@ -150,6 +150,7 @@ if (list_users.includes(user_name)) {
                 document.getElementById('third_menu').style.display = 'none'
                 document.getElementById('four_menu').style.display = 'none'
                 document.getElementById('five_menu').style.display = 'block'
+                // что нажали то и добавилось
                 if (button.id === 'all_statisctic') {
                     all_data['statistic'] = 'all_statisctic'
                 } else {
@@ -240,6 +241,7 @@ if (list_users.includes(user_name)) {
                 .catch(error => {
                     console.error('There has been a problem with your fetch operation:', error);
                 });
+            // при нажатии на отправить отчет - закрывается веб приложение
             tg.close()
         })
 
@@ -272,7 +274,7 @@ if (list_users.includes(user_name)) {
 
 
     })
-
+// если юзера нет в списке то белая страница
 } else {
     document.getElementById('body').innerHTML = ''
 }
