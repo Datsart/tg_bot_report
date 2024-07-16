@@ -1,5 +1,4 @@
 from flask import Flask, render_template, send_from_directory, request
-import telebot
 from flask_cors import CORS
 import json
 import requests
