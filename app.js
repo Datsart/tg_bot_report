@@ -28,7 +28,6 @@ if (list_users.includes(user_name)) {
         let buttons_first_menu = document.querySelectorAll('#first_menu .btn')
         buttons_first_menu.forEach(function (button) {
             button.addEventListener('click', function () {
-                Telegram.WebApp.close();
                 document.getElementById('second_menu').style.display = 'block'
                 document.getElementById('first_menu').style.display = 'none'
                 document.getElementById('third_menu').style.display = 'none'
