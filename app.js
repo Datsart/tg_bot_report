@@ -240,9 +240,7 @@ if (list_users.includes(user_name)) {
                 .catch(error => {
                     console.error('There has been a problem with your fetch operation:', error);
                 });
-            // закрываем окно веба после отправки данных
-            tg.close()
-
+            window.Telegram.WebApp.close()
         })
 
 
