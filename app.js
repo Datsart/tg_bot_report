@@ -278,6 +278,7 @@ if (list_users.includes(user_name)) {
 } else {
     document.getElementById('body').innerHTML = ''
     document.getElementById('body').style.backgroundImage = ''
+    document.getElementById('body').style.backgroundColor = ''
 }
 
 
